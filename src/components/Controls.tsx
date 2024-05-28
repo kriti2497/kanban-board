@@ -8,6 +8,7 @@ interface ControlProps {
   selectedTask: any;
   moveForwardBackwards: (argType: string) => void;
   deleteTask: () => void;
+  onKeyUpSubmit: (e: any) => void;
 }
 
 const Controls: React.FC<ControlProps> = ({
@@ -17,6 +18,7 @@ const Controls: React.FC<ControlProps> = ({
   selectedTask,
   moveForwardBackwards,
   deleteTask,
+  onKeyUpSubmit,
 }) => {
   return (
     <div className="w-full bg-blue-300 px-5 py-6">
@@ -27,6 +29,9 @@ const Controls: React.FC<ControlProps> = ({
           placeholder="New task name"
           value={inputTaskName}
           onChange={(e: any) => setInputTaskName(e.target.value)}
+          onKeyUp={(e) => {
+            onKeyUpSubmit(e);
+          }}
         />
         <button
           className="border rounded-md text-white bg-blue-950 py-1 px-3"

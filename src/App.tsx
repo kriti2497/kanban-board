@@ -12,14 +12,25 @@ function App() {
   const statusList = ["todo", "inprogress", "completed"];
 
   const submitTaskHandler = () => {
-    setAllTasksArray([
-      ...allTasksArray,
-      {
-        id: uuidv4(),
-        name: taskName,
-        status: statusList[0],
-      },
-    ]);
+    if (taskName) {
+      setAllTasksArray([
+        ...allTasksArray,
+        {
+          id: uuidv4(),
+          name: taskName,
+          status: statusList[0],
+        },
+      ]);
+    } else {
+      alert("Please enter the task to be added");
+    }
+  };
+
+  const onKeyUpSubmit = (event: any) => {
+    if (event.keyCode == 13) {
+      submitTaskHandler();
+      setTaskName("");
+    }
   };
 
   const selectTaskToMove = (taskId: string) => {
@@ -84,6 +95,7 @@ function App() {
         selectedTask={selectedTask}
         moveForwardBackwards={moveForwardBackwards}
         deleteTask={deleteTask}
+        onKeyUpSubmit={onKeyUpSubmit}
       />
       <Board
         allTaskArray={allTasksArray}

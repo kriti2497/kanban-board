@@ -18,7 +18,11 @@ const Board: React.FC<{
           {allTaskArray.map((task: any) => {
             if (task.status === each) {
               return (
-                <div key={task.id} onClick={() => selectTaskHandler(task.id)}>
+                <div
+                  key={task.id}
+                  onClick={() => selectTaskHandler(task.id)}
+                  className="cursor-pointer"
+                >
                   {task.name}
                 </div>
               );
